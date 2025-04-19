@@ -1,0 +1,26 @@
+fire/
+├── public/                     # Static assets
+├── src/
+│   ├── components/            # Reusable components
+│   │   ├── Navbar.jsx
+│   │   ├── CityView.jsx
+│   │   ├── MintModal.jsx
+│   │   ├── TradeDashboard.jsx
+│   │   ├── Profile.jsx
+│   │   ├── Notification.jsx
+│   │   ├── DistrictCard.jsx
+│   ├── pages/                 # Page components
+│   │   ├── Home.jsx
+│   │   ├── Trade.jsx
+│   │   ├── ProfilePage.jsx
+│   ├── lib/                   # Blockchain and API utils
+│   │   ├── viem.js           # Viem client setup
+│   │   ├── zora.js           # Zora SDK functions
+│   │   ├── craiyon.js        # Craiyon API integration
+│   ├── App.jsx                # Root component
+│   ├── main.jsx               # Entry point
+│   ├── index.css              # Global styles
+│   ├── assets/                # SVG icons, images
+├── package.json               # Dependencies
+├── vite.config.js             # Vite config
+├── README.md                  # Setup instructions

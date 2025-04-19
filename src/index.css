@@ -1,0 +1,261 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #F5F5F5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Colors */
+:root {
+  --coral: #FF6B6B;
+  --teal: #4ECDC4;
+  --lime: #A3E635;
+  --violet: #7B2CBF;
+  --soft-white: #F5F5F5;
+  --gray: #666;
+  --white: #FFFFFF;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.navbar-logo {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.navbar-logo:hover {
+  text-decoration: underline;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: var(--violet);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  text-decoration: underline;
+}
+
+.navbar-wallet button {
+  background: var(--lime);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.navbar-wallet button:hover {
+  background: var(--teal);
+}
+
+.navbar-mobile-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--violet);
+  cursor: pointer;
+}
+
+.navbar-mobile-menu {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.navbar-mobile-menu a {
+  color: var(--violet);
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.navbar-mobile-menu a:hover {
+  background: #f0f0f0;
+}
+
+/* City Grid */
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* District Card */
+.district-card {
+  background: var(--white);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.district-card:hover {
+  transform: scale(1.05);
+}
+
+.district-card img,
+.district-card svg {
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.district-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.district-card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modal-content input,
+.modal-content button {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.modal-content button {
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content .btn-primary {
+  background: var(--coral);
+  color: var(--white);
+}
+
+.modal-content .btn-primary:hover {
+  background: var(--teal);
+}
+
+.modal-content .btn-secondary {
+  background: none;
+  color: var(--gray);
+}
+
+.modal-content .btn-secondary:hover {
+  color: #000;
+}
+
+.modal-content .btn-ai {
+  background: var(--violet);
+  color: var(--white);
+}
+
+.modal-content .btn-ai:hover {
+  background: var(--teal);
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.notification.success {
+  background: var(--teal);
+}
+
+.notification.error {
+  background: var(--coral);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .city-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-mobile-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .city-grid {
+    grid-template-columns: 1fr;
+  }
+}
