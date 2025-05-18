@@ -2,6 +2,8 @@
 
 FireTasks is a decentralized microtasks platform built on the Base Sepolia testnet. It enables users to post tasks by locking FIRE tokens as escrow and allows workers to complete these tasks to earn rewards.
 
+https://firezora.netlify.app/
+
 ## Overview
 
 FireTasks creates a trustless environment for freelance work by using smart contracts to handle task creation, acceptance, completion, and payment. The platform uses FIRE tokens (created using the Zora Coins Protocol) as the currency for all transactions.
