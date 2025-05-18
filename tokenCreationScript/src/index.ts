@@ -33,8 +33,8 @@ const walletClient = createWalletClient({
 
 
 const coinParams: CreateCoinArgs = {
-    name: "Fire - 100 Men v 1 Gorilla",
-    symbol: "Fire100v1 ",
+    name: "Fire",
+    symbol: "Fire",
     uri: "ipfs://bafybeigoxzqzbnxsn35vq7lls3ljxdcwjafxvbvkivprsodzrptpiguysy",
     payoutRecipient: account.address,
 };

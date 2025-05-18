@@ -1,15 +1,15 @@
 Account address: 0xEd921BA5cc5EEB8971cD8929254627a4FDAF84C1
-Transaction hash: 0xe12f16c245af31181947eb587c9418810034a05b766058389993fb07ce991d5e
-Coin address: 0xE156239144D8E52184d8588f80204D6cB472609c
+Transaction hash: 0x05177f6cde225380230dfcc201f9a7a9c40389ab90e31025188b146574303db5
+Coin address: 0x6d3A433919F2894cB8Fbf5b4CD1149a1e34e32dF
 Deployment details: {
   caller: '0xEd921BA5cc5EEB8971cD8929254627a4FDAF84C1',
   payoutRecipient: '0xEd921BA5cc5EEB8971cD8929254627a4FDAF84C1',
   platformReferrer: '0x5F14C23983c9e0840Dc60dA880349622f0785420',
   currency: '0x4200000000000000000000000000000000000006',
   uri: 'ipfs://bafybeigoxzqzbnxsn35vq7lls3ljxdcwjafxvbvkivprsodzrptpiguysy',
-  name: 'Fire - 100 Men v 1 Gorilla',
-  symbol: 'Fire100v1 ',
-  coin: '0xE156239144D8E52184d8588f80204D6cB472609c',
-  pool: '0xf2fE6eDdd1732E51296Cc3a52510fF53ED340FBa',
-  version: '0.8.0'
+  name: 'Fire',
+  symbol: 'Fire',
+  coin: '0x6d3A433919F2894cB8Fbf5b4CD1149a1e34e32dF',
+  pool: '0xc59b6373B0d807027f5CBA3Ca6Ff4FCb50559816',
+  version: '0.9.0'
 }
