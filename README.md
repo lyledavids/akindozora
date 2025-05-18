@@ -51,5 +51,5 @@ The FIRE token was created using the Zora Coins Protocol, which provides a simpl
 ## Acknowledgements
 
 - Built on Base Sepolia testnet
-- FIRE token created with Zora Coins Protocol
+- FIRE token created with Zora Coins Protocol(Check tokenCreationScript folder and the notes.txt in folder)
 - Developed during the Base x Zora hackathon
