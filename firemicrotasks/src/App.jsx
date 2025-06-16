@@ -44,44 +44,118 @@ function App() {
     return newSubmission
   }
 
-  const init = async () => {
-    if (window.ethereum) {
-      try {
-        // Request account access
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
+const BASE_SEPOLIA_CHAIN_ID = "0x14A34"; // Hex for 84532
 
-        // Create Web3 provider
-        const web3Provider = new ethers.BrowserProvider(window.ethereum)
-        const web3Signer = await web3Provider.getSigner()
+const init = async () => {
+  if (typeof window.ethereum === "undefined") {
+    alert("Please install MetaMask to use this application.")
+    return
+  }
 
-        // Create contract instances
-        const taskContractInstance = new ethers.Contract(TASK_CONTRACT_ADDRESS, TaskContractABI, web3Signer)
-        const fireTokenInstance = new ethers.Contract(FIRE_TOKEN_ADDRESS, FireTokenABI, web3Signer)
+  try {
+    const provider = window.ethereum
 
-        setAccount(accounts[0])
-        setProvider(web3Provider)
-        setSigner(web3Signer)
-        setTaskContract(taskContractInstance)
-        setFireToken(fireTokenInstance)
-
-        // Load tasks
-        await loadTasks(taskContractInstance)
-
-        // Listen for account changes
-        window.ethereum.on("accountsChanged", (newAccounts) => {
-          setAccount(newAccounts[0])
-          // Reload tasks when account changes
-          loadTasks(taskContractInstance)
-        })
-      } catch (error) {
-        console.error("Error initializing app:", error)
-        setContractError("Failed to connect to the contract. Please check if you're on Base Sepolia network.")
-      }
-    } else {
-      alert("Please install MetaMask to use this application")
+    // Request account access
+    const accounts = await provider.request({ method: "eth_requestAccounts" })
+    if (!accounts || accounts.length === 0) {
+      throw new Error("No account found")
     }
+
+    // Check network
+    const chainId = await provider.request({ method: "eth_chainId" })
+    if (chainId !== BASE_SEPOLIA_CHAIN_ID) {
+      // Optionally request a switch
+      try {
+        await provider.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: BASE_SEPOLIA_CHAIN_ID }],
+        })
+      } catch (switchError) {
+        throw new Error("Please switch to Base Sepolia network in MetaMask.")
+      }
+    }
+
+    const web3Provider = new ethers.BrowserProvider(provider)
+    const signer = await web3Provider.getSigner()
+
+    // Replace these with your actual addresses + ABIs
+    const taskContractInstance = new ethers.Contract(TASK_CONTRACT_ADDRESS, TaskContractABI, signer)
+    const fireTokenInstance = new ethers.Contract(FIRE_TOKEN_ADDRESS, FireTokenABI, signer)
+
+    setAccount(accounts[0])
+    setProvider(web3Provider)
+    setSigner(signer)
+    setTaskContract(taskContractInstance)
+    setFireToken(fireTokenInstance)
+
+    await loadTasks(taskContractInstance)
+
+    // Listeners
+    provider.on("accountsChanged", (newAccounts) => {
+      if (newAccounts.length > 0) {
+        setAccount(newAccounts[0])
+        loadTasks(taskContractInstance)
+      } else {
+        setContractError("Wallet disconnected.")
+      }
+    })
+
+    provider.on("chainChanged", (newChainId) => {
+      if (newChainId !== BASE_SEPOLIA_CHAIN_ID) {
+        setContractError("Wrong network. Please switch to Base Sepolia.")
+      } else {
+        setContractError("")
+        init() // Re-init
+      }
+    })
+
+  } catch (err) {
+    console.error("init error", err)
+    setContractError(err.message || "Failed to connect.")
+  } finally {
     setLoading(false)
   }
+}
+
+
+  // const init = async () => {
+  //   if (window.ethereum) {
+  //     try {
+  //       // Request account access
+  //       const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
+
+  //       // Create Web3 provider
+  //       const web3Provider = new ethers.BrowserProvider(window.ethereum)
+  //       const web3Signer = await web3Provider.getSigner()
+
+  //       // Create contract instances
+  //       const taskContractInstance = new ethers.Contract(TASK_CONTRACT_ADDRESS, TaskContractABI, web3Signer)
+  //       const fireTokenInstance = new ethers.Contract(FIRE_TOKEN_ADDRESS, FireTokenABI, web3Signer)
+
+  //       setAccount(accounts[0])
+  //       setProvider(web3Provider)
+  //       setSigner(web3Signer)
+  //       setTaskContract(taskContractInstance)
+  //       setFireToken(fireTokenInstance)
+
+  //       // Load tasks
+  //       await loadTasks(taskContractInstance)
+
+  //       // Listen for account changes
+  //       window.ethereum.on("accountsChanged", (newAccounts) => {
+  //         setAccount(newAccounts[0])
+  //         // Reload tasks when account changes
+  //         loadTasks(taskContractInstance)
+  //       })
+  //     } catch (error) {
+  //       console.error("Error initializing app:", error)
+  //       setContractError("Failed to connect to the contract. Please check if you're on Base Sepolia network.")
+  //     }
+  //   } else {
+  //     alert("Please install MetaMask to use this application")
+  //   }
+  //   setLoading(false)
+  // }
 
   useEffect(() => {
     init()
