@@ -1,0 +1,6 @@
+{
+	"dependencies": {
+		"@zoralabs/protocol-sdk": "^0.13.6",
+		"viem": "^2.30.5"
+	}
+}
